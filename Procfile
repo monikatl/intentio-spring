@@ -1,0 +1,1 @@
+web: java -jar target/intentio-spring-0.0.1-SNAPSHOT.jar --server.address=:: --server.port=$PORT
