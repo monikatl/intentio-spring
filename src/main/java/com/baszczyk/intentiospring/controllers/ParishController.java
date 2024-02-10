@@ -2,27 +2,30 @@ package com.baszczyk.intentiospring.controllers;
 
 import com.baszczyk.intentiospring.data.data.user.Parish;
 import com.baszczyk.intentiospring.repositories.ParishRepository;
+import com.baszczyk.intentiospring.services.ParishService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/parish")
 public class ParishController {
   @Autowired
-  private ParishRepository parishRepository;
+  private ParishService parishService;
 
   @PostMapping("/createParish")
   public Parish createParish(@RequestBody Parish parish) {
-    Parish newParish = parishRepository.save(parish);
+    Parish newParish = parishService.createParish(parish);
     return newParish;
   }
 
-  @GetMapping("/getParish/{id}")
-  public String getParish(@PathVariable(name = "id") Long id) {
-    System.out.println("Owner get called...");
-    Parish ownerOut = parishRepository.getById(id);
-    System.out.println("\nOwner details with Blogs :: \n" + ownerOut);
-
-    return "Owner fetched...";
+  @GetMapping("/parish")
+  public ResponseEntity<Parish> getParish() {
+    Parish parish = parishService.getParishById(1L);
+    if(parish != null) {
+      return new ResponseEntity<>(parish, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 }
