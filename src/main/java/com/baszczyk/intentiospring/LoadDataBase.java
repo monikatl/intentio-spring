@@ -4,6 +4,7 @@ import com.baszczyk.intentiospring.data.data.user.Parish;
 import com.baszczyk.intentiospring.data.data.user.User;
 import com.baszczyk.intentiospring.repositories.ParishRepository;
 import com.baszczyk.intentiospring.repositories.UserRepository;
+import com.baszczyk.intentiospring.utils.MyPasswordGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +23,7 @@ public class LoadDataBase {
 
       User admin = new User();
       admin.setName("Monika");
-      admin.setPassword("12345");
+      admin.setPassword(MyPasswordGenerator.generatePassayPassword());
 
 
         return args -> {
