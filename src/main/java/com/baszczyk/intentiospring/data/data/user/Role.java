@@ -1,11 +1,17 @@
 package com.baszczyk.intentiospring.data.data.user;
 
-public enum Role {
-    PARISH_PRIEST("PROBOSZCZ"), VICAR("WIKARY"), PARISHIONER("PARAFIANIN") ;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
+@Entity
+@Table(name = "role")
+public class Role {
 
-    public String role;
-    Role(String role) {
-      this.role = role;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
+  @Column(length = 60)
+  private String name;
 }
