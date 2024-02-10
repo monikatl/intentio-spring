@@ -3,13 +3,16 @@ package com.baszczyk.intentiospring.data.data.user;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = Priest.class, name = "Priest"),
   @JsonSubTypes.Type(value = Parishioner.class, name = "Parishioner")
 })
+@Table(name = "user_table")
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,11 +32,4 @@ public class User {
   @Enumerated(EnumType.STRING)
   private Role role;
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 }

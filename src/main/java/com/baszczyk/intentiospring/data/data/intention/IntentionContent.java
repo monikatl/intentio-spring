@@ -1,7 +1,9 @@
 package com.baszczyk.intentiospring.data.data.intention;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "intention_content_table")
 public class IntentionContent {
@@ -13,13 +15,8 @@ public class IntentionContent {
   private String headline;
   private String body;
   private String name;
-  private String from;
 
-  public Long getId() {
-    return id;
-  }
+  @OneToOne(mappedBy = "content")
+  private Intention intention;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
 }

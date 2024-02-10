@@ -2,7 +2,9 @@ package com.baszczyk.intentiospring.data.data.intention;
 
 import com.baszczyk.intentiospring.data.data.user.User;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "intention_table")
 public class Intention {
@@ -15,23 +17,14 @@ public class Intention {
   @Enumerated(EnumType.STRING)
   private IntentionKind kind;
 
-  @Column(name="content")
-  private IntentionContent content;
 
-  @Column(name="orderer_user")
-  private User ordererUser;
+  @OneToOne(cascade = CascadeType.ALL)
+  @PrimaryKeyJoinColumn(name = "content_id")
+  private IntentionContent content;
 
 
   public Intention() {
   }
 
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 }
 

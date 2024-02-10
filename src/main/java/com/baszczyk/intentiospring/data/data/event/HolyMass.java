@@ -15,6 +15,7 @@ public class HolyMass implements Event {
   private Long id;
 
   @Column(name = "intention_priest", nullable = false)
+  @OneToMany(mappedBy = "mass")
   private List<IntentionWithPriest> intentionWithPriestList;
   private int numberOfPriests;
 
