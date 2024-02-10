@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/parish")
+@RequestMapping()
 public class ParishController {
   @Autowired
   private ParishService parishService;
